@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Лабораторная работа 2 - My Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../lab1/" class="nav-link">Lab1</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Лабораторная работа 2</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../lab3/" class="nav-link">Лабораторная работа №3</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../practice3/" class="nav-link">Практическая работа №3</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../lab1/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../lab3/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#2" class="nav-link">Лабораторная работа 2</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">Введение</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#models" class="nav-link">models</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#forms" class="nav-link">forms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#views" class="nav-link">views</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#urls" class="nav-link">urls</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">Выводы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="2">Лабораторная работа 2</h1>
+<p><strong>РЕАЛИЗАЦИЯ ПРОСТОГО САЙТА СРЕДСТВАМИ DJANGO</strong></p>
+<h2 id="_1">Введение</h2>
+<p><strong>Цель:</strong> овладеть практическими навыками и умениями реализации web-сервисов
+средствами Django 2.2.</p>
+<p><strong>Оборудование:</strong> компьютерный класс.</p>
+<p><strong>Программное обеспечение:</strong> Python 3.6+, Django 3, PostgreSQL *.</p>
+<p><strong>Практическое задание:</strong> Реализовать сайт используя фреймворк Django 3 и СУБД PostgreSQL *, в
+соответствии с вариантом задания лабораторной работы.</p>
+<p><strong>Вариант: 4</strong></p>
+<p><strong>Задание: Список туров туристической фирмы</strong></p>
+<p>Хранится информация о названии тура, турагенстве, описании тура, периоде проведения тура, условиях оплаты.
+Необходимо реализовать следующий функционал:</p>
+<ul>
+<li>Регистрация новых пользователей.</li>
+<li>Просмотр и резервирование туров. Пользователь должен иметь возможность редактирования и удаления своих резервирований.</li>
+<li>Написание отзывов к турам. При добавлении комментариев, должны сохраняться даты тура, текст комментария, рейтинг (1-10), информация о комментаторе.</li>
+<li>Администратор должен иметь возможность подтвердить резервирование тура средствами Django-admin.</li>
+<li>В клиентской части должна формироваться таблица, отображающая все проданные туры по странам.</li>
+</ul>
+<h2 id="models">models</h2>
+<p>В файле models.py у нас 4 модели для реализации основного функционала. </p>
+<pre><code>from django.db import models
+from users.models import Tourist
+
+
+class Tour(models.Model):
+    name = models.CharField(max_length=300)
+    destination = models.CharField(max_length=200)
+    country = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
+    tourists = models.ManyToManyField(Tourist, through='Reservation')
+</code></pre>
+<p><strong>Tour</strong> – содержит информацию о турах: название, агенство, которое предоставляет услугу, описание тура, даты начала и конца, способ оплаты и статус "продано" или нет;</p>
+<pre><code>class Reservation(models.Model):
+    tourist = models.ForeignKey(Tourist, on_delete=models.DO_NOTHING)
+    tour = models.ForeignKey(Tour, on_delete=models.DO_NOTHING)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    is_confirmed = models.BooleanField(default=False)
+</code></pre>
+<p><strong>Reservation</strong> – содержит информацию о пользователе и его резервировании;</p>
+<pre><code>class Review(models.Model):
+    rating = models.IntegerField()
+    reservation = models.ForeignKey(Reservation, on_delete=models.DO_NOTHING)
+    comment = models.CharField(max_length=1000)
+</code></pre>
+<p><strong>Review</strong> – содержит информацию об отзывах: оценка, резервирование, комментарий;</p>
+<h2 id="forms">forms</h2>
+<p><strong>Формы для регистрации пользователей</strong></p>
+<pre><code>from django.contrib.auth.forms import UserCreationForm
+from .models import Tourist
+
+
+class TouristCreationForm(UserCreationForm):
+    class Meta:
+        model = Tourist
+        fields = ['username', 'first_name', 'last_name', 'passport']
+</code></pre>
+<p><strong>html – код отображения для входа или регистрации пользователя</strong></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Create account&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="post"&gt;{% csrf_token %}
+    {{ form.as_p }}
+    &lt;input type="submit" value="Save"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;h3&gt;Already have an account? &lt;a href="/accounts/login/"&gt;Sign in&lt;/a&gt;&lt;/h3&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="views">views</h2>
+<pre><code>from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from .models import Reservation, Tour, Review
+from django.http import HttpResponseBadRequest
+
+
+class ReservationCreationView(LoginRequiredMixin, CreateView):
+    model = Reservation
+    success_url = "/reservations"
+    fields = ['start_date', 'end_date']
+    template_name = "reservation_form.html"
+
+def form_valid(self, form):
+    tour_id = self.kwargs['id']
+    if not tour_id:
+        return HttpResponseBadRequest("Invalid tour id")
+
+    tour_id = int(tour_id)
+    reservation: Reservation = form.instance
+    reservation.tourist = self.request.user
+    reservation.tour = Tour.objects.get(pk=tour_id)
+    return super().form_valid(form)
+
+
+class ReservationUpdateView(LoginRequiredMixin, UpdateView):
+    model = Reservation
+    success_url = "/reservations"
+    fields = ["start_date", "end_date"]
+    template_name = "reservation_form.html"
+
+def form_valid(self, form):
+    reservation_id = self.kwargs['pk']
+    if not reservation_id:
+        return HttpResponseBadRequest("Invalid reservation id")
+
+    reservation_id = int(reservation_id)
+    prev_reservation: Reservation = Reservation.objects.get(pk=reservation_id)
+    if prev_reservation.tourist != self.request.user:
+        return HttpResponseBadRequest("Invalid reservation id")
+
+    reservation: Reservation = form.instance
+    reservation.tourist = self.request.user
+    reservation.tour = prev_reservation.tour
+    return super().form_valid(form)
+
+
+class ReservationListView(LoginRequiredMixin, ListView):
+    model = Reservation
+    template_name = "reservation_list.html"
+    queryset = Reservation.objects.all()
+
+def get_queryset(self):
+    user = self.request.user
+    query_set = self.queryset.filter(tourist=user)
+
+    return query_set
+
+
+class ReservationDetailView(LoginRequiredMixin, DetailView):
+    model = Reservation
+    template_name = "reservation_detail.html"
+
+
+class ReservationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Reservation
+    success_url = "/reservations"
+    template_name = "reservation_delete.html"
+
+def form_valid(self, form):
+    messages.success(self.request, "The task was deleted successfully.")
+    return super(ReservationDeleteView, self).form_valid(form)
+
+
+class ToursListView(LoginRequiredMixin, ListView):
+    model = Tour
+    template_name = "tour_list.html"
+
+
+class TourDetailView(LoginRequiredMixin, DetailView):
+    model = Tour
+    template_name = "tour_detail.html"
+
+
+class ReviewCreateView(LoginRequiredMixin, CreateView):
+    model = Review
+    success_url = "/reservations"
+    template_name = "review_form.html"
+    fields = ['rating', 'comment']
+
+def form_valid(self, form):
+    reservation_id = self.kwargs['id']
+    if not reservation_id:
+        return HttpResponseBadRequest("Invalid tour id")
+
+    reservation_id = int(reservation_id)
+    review: Review = form.instance
+    review.reservation = Reservation.objects.get(pk=reservation_id)
+    return super().form_valid(form)
+
+
+class ReviewListView(LoginRequiredMixin, ListView):
+    model = Review
+    template_name = "review_list.html"
+    queryset = Review.objects.all()
+
+def get_queryset(self):
+    tour_id = int(self.kwargs['id'])
+    tour: Tour = Tour.objects.get(pk=tour_id)
+
+    query_set = self.queryset.filter(reservation__tour=tour)
+
+    return query_set
+</code></pre>
+<h2 id="urls">urls</h2>
+<pre><code>from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path("tours/&lt;int:id&gt;/reserve", ReservationCreationView.as_view()),
+    path("tours", ToursListView.as_view()),
+    path("", ToursListView.as_view()),
+    path("tours/&lt;int:pk&gt;/", TourDetailView.as_view()),
+    path("reservations/&lt;int:pk&gt;/edit", ReservationUpdateView.as_view()),
+    path("reservations/&lt;int:pk&gt;/delete", ReservationDeleteView.as_view()),
+    path("reservations/&lt;int:pk&gt;", ReservationDetailView.as_view()),
+    path("reservations/", ReservationListView.as_view()),
+    path("reservations/&lt;int:id&gt;/review", ReviewCreateView.as_view()),
+    path("tours/&lt;int:id&gt;/reviews", ReviewListView.as_view())
+]
+</code></pre>
+<h2 id="_2">Выводы</h2>
+<p>В рамках второй лабораторной работы "РЕАЛИЗАЦИЯ ПРОСТОГО САЙТА СРЕДСТВАМИ DJANGO" было изучено использование django: проектирование базы данных, создание представлений и основы html – верстки. </p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

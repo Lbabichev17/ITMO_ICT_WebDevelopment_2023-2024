@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Task 2 - My Docs</title>
+        <title>Практическая работа №3 - My Docs</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -34,19 +34,16 @@
                                 <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
-                                <a href="../task_1/" class="nav-link">Task 1</a>
+                                <a href="../lab1/" class="nav-link">Lab1</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../lab2/" class="nav-link">Лабораторная работа 2</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../lab3/" class="nav-link">Лабораторная работа №3</a>
                             </li>
                             <li class="navitem active">
-                                <a href="./" class="nav-link">Task 2</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../task_3/" class="nav-link">Task 3</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../task_4/" class="nav-link">Task 4</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../task_5/" class="nav-link">Task 5</a>
+                                <a href="./" class="nav-link">Практическая работа №3</a>
                             </li>
                         </ul>
 
@@ -57,12 +54,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../task_1/" class="nav-link">
+                                <a rel="prev" href="../lab3/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../task_3/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -84,18 +81,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#no2" class="nav-link">Задача №2</a>
+            <li class="nav-item" data-level="1"><a href="#no3" class="nav-link">Практическая работа №3</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">Основные файлы с кодом</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">Решение</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">Демонстрация работы</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -103,69 +94,164 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="no2">Задача №2</h2>
-<p>Реализовать клиентскую и серверную часть приложения. Клиент запрашивает у сервера выполнение математической операции, параметры которой вводятся с клавиатуры. 
-Сервер обрабатывает полученные данные и возвращает результат клиенту. </p>
-<p>Мой вариант, согласно списку группы, – теорема Пифагора.</p>
-<h2 id="_1">Решение</h2>
-<ol>
-<li>Сервер</li>
-</ol>
-<pre><code>import socket
+<h1 id="no3">Практическая работа №3</h1>
+<p>Описание работы</p>
+<p>Напишите запрос на создание 6-7 новых автовладельцев и 5-6 автомобилей, каждому автовладельцу назначьте удостоверение и от 1 до 3 автомобилей. Задание можете выполнить либо в интерактивном режиме интерпретатора, либо в отдельном python-файле. Результатом должны стать запросы и отображение созданных объектов.</p>
+<h2 id="_1">Основные файлы с кодом</h2>
+<ul>
+<li><code>add_oblects</code> - заполнение данными</li>
+</ul>
+<pre><code class="language-python">import os
+import django
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_project_babichev.settings')
+django.setup()
 
-server_address = ('localhost', 12345)
-server_socket.bind(server_address)
+from datetime import date
+from project_first_app.models import *
 
-server_socket.listen(1)
-print('Сервер запущен и ожидает подключения клиента...')
 
-while True:
-    client_socket, client_address = server_socket.accept()
-    print('Подключился клиент:', client_address)
+#   Owners
+first_names = ['Alice', 'John', 'Robert', 'Emily', 'Michael', 'Olivia']
+last_names = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis']
+birthdays = [date(1990, 5, 15), date(1985, 9, 10), date(1978, 4, 25),
+             date(1992, 8, 5), date(1980, 1, 20), date(1995, 3, 12)]
 
-    base = float(client_socket.recv(1024).decode('utf-8'))
-    height = float(client_socket.recv(1024).decode('utf-8'))
+#   Licences
+numbers = ['1111111111', '2222222222', '3333333333',
+           '4444444444', '5555555555', '6666666666']
+types = ['A', 'B', 'C', 'B', 'A', 'D']
+dates = [date(2010, 1, 1), date(2012, 1, 1), date(2015, 1, 1),
+         date(2018, 1, 1), date(2020, 1, 1), date(2022, 1, 1)]
 
-    area = base * height
+#   Cars
+plates = ['ABC123', 'DEF456', 'GHI789',
+          'JKL012', 'MNO345', 'PQR678']
+brands = ['Ford', 'Chevrolet', 'Toyota', 'Honda', 'Nissan', 'BMW']
+models = ['Focus', 'Cruze', 'Corolla', 'Civic', 'Sentra', 'X5']
+colors = ['Silver', 'Black', 'Red', 'Blue', 'White', 'Gray']
 
-    client_socket.send(str(area).encode('utf-8'))
+#   Ownerships
+dfrom = [date(2010, 6, 1), date(2012, 4, 1), date(2015, 8, 1),
+         date(2018, 2, 1), date(2020, 10, 1), date(2022, 3, 1)]
+duntil = [date(2011, 7, 1), date(2013, 6, 1), date(2016, 9, 11),
+          date(2019, 3, 1), date(2021, 11, 1), date(2023, 4, 1)]
 
-    client_socket.close()
+for (fn, ln, b,
+     n, t, d,
+     p, br, m, c,
+     df, du) in zip(first_names, last_names, birthdays,
+                    numbers, types, dates,
+                    plates, brands, models, colors,
+                    dfrom, duntil):
+    o = Owner(first_name=fn, last_name=ln, birthday=b)
+    o.save()
+    l = License(owner=o, number=n, type=t, issue_date=d)
+    l.save()
+    c = Car(license_plate=p, brand=br, model=m, color=c)
+    c.save()
+    os = Ownership(owner=o, car=c, date_from=df, date_until=du)
+    os.save()
 </code></pre>
-<ol>
-<li>Клиент</li>
-</ol>
-<pre><code>import socket
+<ul>
+<li><code>filter_obj_t2</code> - задание 2</li>
+</ul>
+<pre><code class="language-python">import os
+import django
 
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_project_babichev.settings')
+django.setup()
 
-server_address = ('localhost', 12345)
+from datetime import date
+from project_first_app.models import *
 
-client_socket.connect(server_address)
-print('Подключено к серверу:', server_address)
 
-base = float(input('Введите значение основания: '))
-height = float(input('Введите значение высоты: '))
+#   All Toyotas
+toyotas = Car.objects.filter(brand='Toyota')
+print(&quot;All Toyota cars&quot;)
+for t in toyotas:
+    print(t.license_plate, t.brand, t.model, t.color)
+print()
 
-if base &lt; 0 or height &lt; 0:
-    print('Высота и длина не могут быть отрицательными.')
-    client_socket.close()
-    exit()
+#   All owners named John
+js = Owner.objects.filter(first_name='John')
+print(&quot;All owners named John&quot;)
+for j in js:
+    print(j.first_name, j.last_name)
+print()
 
-client_socket.send(str(base).encode('utf-8'))
-client_socket.send(str(height).encode('utf-8'))
+#   Olivia Davis's license
+olivia = Owner.objects.get(first_name='Olivia').id
+license = License.objects.get(owner__id=olivia)
+print(&quot;Olivia Davis's license&quot;)
+print(license.number, license.type, license.issue_date)
+print()
 
-result = client_socket.recv(1024).decode('utf-8')
+#   All owners of a black car
+blcar = Owner.objects.filter(as_car_owner__car__color='Black')
+print(&quot;All owners of a black car&quot;)
+for b in blcar:
+    print(b.first_name, b.last_name)
+print()
 
-print('Результат операции:', result)
+#   Ownership started in 2015 or later
+ownerships = Ownership.objects.filter(date_from__gte=date(2015, 1, 1))
 
-client_socket.close()
+print(&quot;All owners whose car ownership started in 2015 or later&quot;)
+for o in ownerships:
+    print(o.owner.first_name, o.owner.last_name, '-',
+          o.car.license_plate, o.car.brand, o.car.model, o.car.color)
+print()
 </code></pre>
-<h2 id="_2">Демонстрация работы</h2>
-<p><strong>Клиентская часть</strong><img alt="img_3.png" src="../img_3.png" />
-<strong>Клиентская часть</strong><img alt="img_4.png" src="../img_4.png" /></p></div>
+<ul>
+<li><code>agg_obj_t3.py</code> - задание 3</li>
+</ul>
+<pre><code class="language-python">import os
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_project_babichev.settings')
+django.setup()
+
+from datetime import date
+from django.db.models import Max, Count
+from project_first_app.models import *
+
+
+#   Oldest license
+oldest = License.objects.order_by('issue_date')[0]
+print(&quot;The oldest license&quot;)
+print(oldest.issue_date)
+print()
+
+#   Latest ownership date
+max_dates = Ownership.objects.aggregate(Max('date_from'), Max('date_until')).values()
+print(&quot;The latest ownership date&quot;)
+print(max(max_dates))
+print()
+
+#   Car count for all owners
+car_counter = Owner.objects.annotate(Count(&quot;owned_cars&quot;))
+print(&quot;Car count for all owners&quot;)
+for cr in car_counter:
+    print(cr.first_name, cr.last_name, cr.owned_cars__count)
+print()
+
+#   Car count for every brand
+brand_counter = Car.objects.values('brand').annotate(Count('id'))
+print(&quot;Car count for every brand&quot;)
+for bc in brand_counter:
+    print(bc['brand'], bc['id__count'])
+print()
+
+#   Owners ordered by license issue date
+ordered_license = Owner.objects.order_by(&quot;driver_license__issue_date&quot;)
+
+print(&quot;Owners ordered by license issue date&quot;)
+for ol in ordered_license:
+    print(ol.first_name, ol.last_name)
+print()
+
+</code></pre></div>
             </div>
         </div>
 
